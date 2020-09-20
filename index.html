@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes Cubos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+            </div>
+            <div class="search">
+                <form action="#">
+                    <input type="text" placeholder="Pesquise filmes..." name="search-form" id="search-form">
+                    <img class="icon-search" src="images/search.svg" alt="Pesquisar">
+                </form>
+            </div>
+            <ul class="links">
+                <li><img src="images/bookmark.svg" alt="Favoritos"><a href="#">Favoritos</a></li>
+                <li><img src="images/discount.svg" alt="Promoções"><a href="#"></a><a href="#">Promoções</a></li>
+            </ul>
+            <div class="profile">
+                <span>Bem vindo Rodrigo</span>
+                <img src="images/avatar.png" alt="Photo profile">
+            </div>
+        </div>
+    </header>
+
+    <div id="main">
+        <div class="container">
+
+            <aside id="content">
+                <div id="ads">
+                </div>
+
+                <div class="top-movies">
+                    <h2>Top Filmes</h2>
+                    <ul class="top-list">                      
+                    </ul>
+                </div>
+
+                <div class="movies">
+                    <h2>Filmes</h2>
+                    <div class="filters">
+                        <button  onclick="clickButtonGenre(this)" data-filter="0" class="active">Todos</button>
+                    </div>
+
+                    <ul class="movies-list">
+    
+
+                    </ul>
+
+                    <div class="loading">
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                    </div>
+
+                </div>
+
+            </aside>
+
+            <aside class="sidebar">
+                <div class="header">
+                    <img src="images/bag.svg" alt="Sacola">
+                    <h2>Sacola</h2>
+                </div>
+                <div class="content">
+                    <h3>Sua sacola está vazia</h3>
+                    <p>Adicione filmes agora</p>
+                    <img src="images/social-media.svg" alt="Sua sacola de compras">
+                </div>
+
+                <div class="cart">
+                    <ul class="cart-items">
+                    </ul>
+
+                </div>
+
+                <div class="coupon">
+                    <form action="#">
+                        <label for="coupon">Insira um cupom</label>
+                        <input type="text" name="coupon" id="code_coupon">
+                        <img class="icon_coupon" src="images/coupon.svg" alt="Código do cupom">
+                    </form>
+                </div>
+
+                <a href="payment.html" class="cart-button"> Confirme seus dados R$ <span> 0 </span></a>
+                
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

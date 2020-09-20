@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes Cubos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+            </div>
+            <div class="search">
+                <form action="#">
+                    <input type="text" placeholder="Pesquise filmes..." name="search-form" id="search-form">
+                    <img class="icon-search" src="images/search.svg" alt="Pesquisar">
+                </form>
+            </div>
+            <ul class="links">
+                <li><img src="images/bookmark.svg" alt="Favoritos"><a href="#">Favoritos</a></li>
+                <li><img src="images/discount.svg" alt="Promoções"><a href="#"></a><a href="#">Promoções</a></li>
+            </ul>
+            <div class="profile">
+                <span>Bem vindo Rodrigo</span>
+                <img src="images/avatar.png" alt="Photo profile">
+            </div>
+        </div>
+    </header>
+
+    <div id="main">
+        <div class="container">
+
+            <aside id="content">
+                <form id="form" action="thanks.html">
+
+                    <div class="initial-information">
+                        <h2>Informações Iniciais</h2>
+                        <div class="container-form">
+                            <div class="left">
+                                <label for="name">Insira seu nome completo</label>
+                                <input type="text" placeholder="Ex: Rodrigo Paczkovski" name="name" id="name" required>
+
+                                <label for="phone">Insira seu nome completo</label>
+                                <input type="tel" placeholder="+55 (71) 9 9999-9999" name="phone" id="phone">
+
+                            </div>
+
+                            <div class="right">
+                                <label for="email">Insira seu email</label>
+                                <input type="email" placeholder="Ex: rodrigoin@arroba.com" name="email" id="email">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="address-information">
+                        <h2>Informações de endereço</h2>
+
+                        <div class="container-form">
+                            <div class="left">
+                                <label for="cep">CEP</label>
+                                <input type="text" placeholder="Ex: 00000-00" name="cep" id="cep">
+
+                                <label for="city">Cidade</label>
+                                <input type="text" placeholder="Ex.: 00" name="city" id="city">
+
+                                <label for="address-number">Número</label>
+                                <input type="text" placeholder="Ex.: Salvador" name="address-number"
+                                    id="address-number">
+                            </div>
+
+                            <div class="right">
+                                <label for="country">País</label>
+                                <input type="text" placeholder="Ex: Brasil" name="country" id="country">
+
+                                <label for="neighborhood">Bairro</label>
+                                <input type="text" placeholder="Ex: Graça" name="neighborhood" id="neighborhood">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="payment-information">
+                        <h2>Informações de pagamento</h2>
+
+                        <div class="container-form">
+                            <div class="left">
+                                <label for="card-number">Número do cartão</label>
+                                <input type="text" placeholder="Ex: 00000 00000 0000" name="card-number"
+                                    id="card-number">
+
+                                <label for="date-expired">Data de expiração</label>
+                                <input type="text" placeholder="Ex.: 00" name="date-expired" id="date-expired">
+
+                            </div>
+
+                            <div class="right">
+                                <label for="card-name">Nome do Cartão</label>
+                                <input type="text" placeholder="Ex: Fulando da Silva" name="card-name" id="card-name">
+
+                                <label for="card-cvv">CVV</label>
+                                <input type="text" placeholder="000" name="card-cvv" id="card-cvv">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </aside>
+            <aside class="sidebar">
+                <div class="header">
+                    <img src="images/bag.svg" alt="Sacola">
+                    <h2>Sacola</h2>
+                </div>
+                <div class="content">
+                    <h3>Sua sacola está vazia</h3>
+                    <p>Adicione filmes agora</p>
+                    <img src="images/social-media.svg" alt="Sua sacola de compras">
+                </div>
+
+                <div class="cart">
+                    <ul class="cart-items">
+                    </ul>
+
+                </div>
+
+                <div class="coupon">
+                    <form action="#">
+                        <label for="coupon">Insira um cupom</label>
+                        <input type="text" name="coupon" id="code_coupon">
+                        <img class="icon_coupon" src="images/coupon.svg" alt="Código do cupom">
+                    </form>
+                </div>
+
+                <a href="#" class="cart-button" id="submit-form"> Confirme seus dados R$ <span> 0 </span></a>
+
+
+
+            </aside>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+
+</body>
+
+</html>
