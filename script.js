@@ -19,6 +19,8 @@ let totalCart = 0
 let pg = 1
 let fixedGenre = 0
 
+
+
 const fecthJson = async (url) => {
     return await fetch(url)
         .then(response => response.json())
@@ -40,6 +42,7 @@ fecthJson('https://tmdb-proxy-workers.vhfmag.workers.dev/3/discover/movie?langua
         })
 
         updateTopMovies()
+
     })
 
 
@@ -85,6 +88,7 @@ const movieByGenre = (id, pg = 1) => {
 
 const updateTopMovies = () => {
     listTopMovies.innerHTML = movies.map(({ id, title, image, vote_average, price }) => {
+        const priceFinal = (price / 100).toFixed(2).replace(".", ",")
         return `
         <li onclick="addToCart(${id})">
             <img class="thumbnail" src="${image}" alt="${title}">
@@ -96,7 +100,7 @@ const updateTopMovies = () => {
                 </div>
                 <div class="info-price">
                     <p>Sacola</p>
-                    <p>R$ ${price}</p>
+                    <p>R$ ${priceFinal}</p>
                 </div>
             </div>
         </li>
@@ -108,6 +112,7 @@ const updateTopMovies = () => {
 const updateListMovies = () => {
 
     listMovies.innerHTML = movies.slice(5).map(({ id, title, image, vote_average, price }) => {
+        const priceFinal = (price / 100).toFixed(2).replace(".", ",")
         return `
         <li onclick="addToCart(${id})">
             <img class="thumbnail" src="${image}" alt="${title}">
@@ -119,7 +124,7 @@ const updateListMovies = () => {
                 </div>
                 <div class="info-price">
                     <p>Sacola</p>
-                    <p>R$ ${price}</p>
+                    <p>R$ ${priceFinal}</p>
                 </div>
             </div>
         </li>
@@ -171,7 +176,6 @@ const addToCart = (id) => {
     }
     if (cart.length > 0) {
         sidebarContent.style.display = "none"
-        buttonNext.style.display = "flex"
     }
 }
 
@@ -183,7 +187,6 @@ const removeMovieCart = (id) => {
 
     if (cart.length === 0) {
         sidebarContent.style.display = "flex"
-        buttonNext.style.display = "none"
     }
 }
 
@@ -224,7 +227,7 @@ const updateCart = () => {
     }).join("")
 
     let discount = 0
-    if (inputCode.value === "htmlnaoelinguagem") {
+    if (localStorage.getItem("coupon") === "htmlnaoelinguagem") {
         discount = 50
     }
 
@@ -239,6 +242,13 @@ const updateCart = () => {
     buttonCartTotal.innerText = priceTotal
 
     saveLocalStorage(cart)
+
+    if (cart.length > 0) {
+        sidebarContent.style.display = "none"
+        buttonNext.style.display = "flex"
+    } else {
+        buttonNext.style.display = "none"
+    }
 
 }
 
@@ -289,24 +299,26 @@ const bannerPromo = () => {
     `
     ads.innerHTML = banner
 
-    let fiveMinutes = 60 * 0.05
+    let fiveMinutes = 60 * 5
     const display = document.querySelector('.ads-coupon .timer')
     timer(fiveMinutes, display)
 
-    const buttonCode = document.querySelector('.ads-coupon .code')
-
-    buttonCode.addEventListener("click", () => {
+    ads.addEventListener("click", () => {
         inputCode.value = "htmlnaoelinguagem"
+        ads.style.display = "none"
+        localStorage.setItem("coupon", "htmlnaoelinguagem")
         updateCart()
     })
 
 }
 
 const saveLocalStorage = (arrayCart) => {
-    localStorage.clear()
+    // localStorage.clear()
     localStorage.setItem("cart", JSON.stringify(arrayCart))
 
-    if (inputCode.value === "htmlnaoelinguagem") {
+    const codeInput = document.querySelector('#code_coupon')
+
+    if (codeInput.value === "htmlnaoelinguagem") {
         localStorage.setItem("coupon", "htmlnaoelinguagem")
     }
 }
@@ -315,19 +327,26 @@ const checkLocalStorage = () => {
     const check = localStorage.getItem("cart") === null
     if (!check) {
         const data = JSON.parse(localStorage.getItem("cart"))
-        console.log(data)
+
         cart = []
         cart = data
         updateCart()
 
-        if (cart.length > 0) {
-            sidebarContent.style.display = "none"
+        if (localStorage.getItem("coupon") !== null) {
+            inputCode.value = "htmlnaoelinguagem"
+            ads.style.display = "none"
         }
     }
 
-    if (localStorage.getItem("cart") !== null) {
-        inputCode.value = "htmlnaoelinguagem"
+
+    if (cart.length > 0) {
+        sidebarContent.style.display = "none"
+        buttonNext.style.display = "flex"
+    } else {
+        buttonNext.style.display = "none"
     }
+
+
 }
 
 
@@ -350,6 +369,13 @@ const timer = (duration, display) => {
     }, 1000)
 
 }
+
+buttonNext.addEventListener("click", () => {
+    saveLocalStorage(cart)
+})
+
+
+
 
 bannerPromo()
 movieByGenre(0)

@@ -555,6 +555,40 @@ a.cart-button {
     margin-bottom: 0.2rem;
 }
 
+#box {
+    position: relative;
+    width: 800px;
+    height: 450px;
+    background: #171B1E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+#box img, #box p, #box h2 {
+    margin-top: 2em;
+}
+
+#box .musician {
+    position: absolute;
+    left: 610px;
+}
+
+#box a {
+    background-color: #E25EBF;
+    height: 56px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 1em 3em;
+}
+
 
 
 

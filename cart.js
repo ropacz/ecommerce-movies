@@ -51,7 +51,8 @@ const updateCart = () => {
     }).join("")
 
     let discount = 0
-    if (inputCode.value === "htmlnaoelinguagem") {
+
+    if (localStorage.getItem("coupon") === "htmlnaoelinguagem") {
         discount = 50
     }
 
@@ -122,15 +123,19 @@ const checkLocalStorage = () => {
             sidebarContent.style.display = "none"
             buttonNext.style.display = "flex"
         }
-    }
 
-    if (localStorage.getItem("cart") !== null) {
-        inputCode.value = "htmlnaoelinguagem"
+        const codeInput = document.querySelector('#code_coupon')
+
+        if (localStorage.getItem("coupon") != null) {
+            codeInput.value = "htmlnaoelinguagem"
+        }
     }
+    
+   
 }
 
 const saveLocalStorage = (arrayCart) => {
-    localStorage.clear()
+    // localStorage.clear()
     localStorage.setItem("cart", JSON.stringify(arrayCart))
 
     if (inputCode.value === "htmlnaoelinguagem") {
@@ -139,24 +144,24 @@ const saveLocalStorage = (arrayCart) => {
 }
 
 document.getElementById("submit-form").addEventListener("click", function () {
-    console.log(validateForm())
-    form.submit()
+    const isForm = validateForm()
+    console.log(isForm)
+    if (isForm) form.submit()
 })
 
 
 const validateForm = () => {
-    // const fields = ["name", "phone", "email",
-    //     "cep", "address-number", "country", "neighborhood",
-    //     "card-number", "date-expired", "card-name", "card-cvv"]
+    const fields = ["name", "phone", "email",
+        "cep", "address-number", "country", "neighborhood",
+        "card-number", "date-expired", "card-name", "card-cvv"]
 
-    const fields = ["name"]
 
     let i, l = fields.length;
     let fieldname
     for (i = 0; i < l; i++) {
         fieldname = fields[i]
         if (form[fieldname].value === "") {
-            alert(fieldname + " está vázio!")       
+            alert(fieldname + " está vázio!")
 
             return false
         }
